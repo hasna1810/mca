@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admission Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            color: #333;
+        }
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+        }
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            width: 50%;
+            background-color: #fff;
+            border: 1px solid #ddd;
+        }
+        th, td {
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        th {
+            text-align: left;
+            background-color: #f2f2f2;
+        }
+        input[type="text"],
+        input[type="tel"],
+        input[type="date"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <h1>Admission Form</h1>
+    <form onsubmit="return validatePhoneNumber()">
+        <table>
+            <tr>
+                <th for="name">Name:</th>
+                <td><input type="text" id="name" required></td>
+            </tr>
+            <tr>
+                <th for="phone">Phone Number:</th>
+                <td>
+                    <input type="tel" id="phone" required maxlength="10" pattern="\d{10}" placeholder="Enter 10 digit phone number">
+                    <div class="error" id="phoneError"></div>
+                </td>
+            </tr>
+            <tr>
+                <th for="address">Address:</th>
+                <td><textarea id="address" required></textarea></td>
+            </tr>
+            <tr>
+                <th for="date">DOB:</th>
+                <td><input type="date" id="date" required></td>
+            </tr>
+            <tr>
+                <th>Gender:</th>
+                <td>
+                    <input type="radio" name="gender" value="Male" required> Male
+                    <input type="radio" name="gender" value="Female"> Female
+                    <input type="radio" name="gender" value="Other"> Other
+                </td>
+            </tr>
+            <tr>
+                <th for="course">Course:</th>
+                <td>
+                    <select id="course" required>
+                        <option value="">Select a course</option>
+                        <option value="BA">BA</option>
+                        <option value="BSc">BSc</option>
+                        <option value="BCA">BCA</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2" align="center">
+                    <input type="submit" value="SUBMIT">
+                </td>
+            </tr>
+        </table>
+    </form>
+
+    <script>
+        function validatePhoneNumber() {
+            const phoneInput = document.getElementById('phone');
+            const phoneError = document.getElementById('phoneError');
+            const phonePattern = /^\d{10}$/;
+
+            if (!phonePattern.test(phoneInput.value)) {
+                phoneError.textContent = 'Please enter a valid 10-digit phone number.';
+                return false;
+            } else {
+                phoneError.textContent = '';
+                return true;
+            }
+        }
+    </script>
+</body>
+</html>
+
